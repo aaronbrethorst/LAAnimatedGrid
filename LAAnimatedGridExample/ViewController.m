@@ -51,7 +51,6 @@
     // [laag setLaagOrientation:LAAGOrientationVertical];
     // [laag setLaagBorderColor:[UIColor blackColor]];
     // [laag setLaagBackGroundColor:[UIColor whiteColor]];
-    
     [self.view addSubview:laag];
     
 #if !__has_feature(objc_arc)
@@ -59,10 +58,10 @@
 #endif
     
     // LAAnimatedGrid
-    /*laag = [[LAAnimatedGrid alloc] initWithFrame:CGRectMake(10, 150, 300, 200)];
-    laag.backgroundColor = [UIColor blackColor];
+    laag = [[LAAnimatedGrid alloc] initWithFrame:CGRectMake(10, 130, 300, 200)];
+    [laag setLaagBorderColor:[UIColor whiteColor]];
+    [laag setLaagBackGroundColor:[UIColor blackColor]];
     [laag setArrImages:arrImages];
-    
     [self.view addSubview:laag];
     
 #if !__has_feature(objc_arc)
@@ -70,15 +69,16 @@
 #endif
     
     // LAAnimatedGrid
-    laag = [[LAAnimatedGrid alloc] initWithFrame:CGRectMake(10, 300, 300, 200)];
-    laag.backgroundColor = [UIColor blackColor];
+    laag = [[LAAnimatedGrid alloc] initWithFrame:CGRectMake(10, 250, 300, 300)];
+    [laag setLaagOrientation:LAAGOrientationVertical];
+    [laag setLaagBorderColor:[UIColor cyanColor]];
+    [laag setLaagBackGroundColor:[UIColor whiteColor]];
     [laag setArrImages:arrImages];
-    
     [self.view addSubview:laag];
     
 #if !__has_feature(objc_arc)
     [laag release];
-#endif*/
+#endif
 }
 
 - (void)didReceiveMemoryWarning

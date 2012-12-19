@@ -123,7 +123,7 @@ typedef enum
     _scrollView.showsVerticalScrollIndicator        = NO;
     _scrollView.scrollsToTop                        = NO;
     _scrollView.clipsToBounds                       = YES;
-    _scrollView.delegate                            = self;
+    //_scrollView.delegate                            = self;
     _scrollView.userInteractionEnabled              = NO;
     _scrollView.autoresizingMask                    = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _scrollView.backgroundColor                     = self.laagBackGroundColor;
@@ -132,6 +132,7 @@ typedef enum
     // Adding subviews
     [_scrollView addSubview:_imgView];
     [self addSubview:_scrollView];
+    [_scrollView sendSubviewToBack:_imgView];
     
     // adjust image
     //[self adjustImage];
