@@ -43,7 +43,7 @@
     
     
     // LAAnimatedGrid
-    LAAnimatedGrid *laag = [[LAAnimatedGrid alloc] initWithFrame:CGRectMake(10, 10, 300, 400)];
+    LAAnimatedGrid *laag = [[LAAnimatedGrid alloc] initWithFrame:CGRectMake(10, 10, 300, 500)];
     laag.backgroundColor = [UIColor blackColor];
     [laag setArrImages:arrImages];
     [laag setLaagOrientation:LAAGOrientationVertical];

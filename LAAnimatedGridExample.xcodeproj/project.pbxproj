@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48A5BE381681B8B8007D4DC3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A5BE371681B8B8007D4DC3 /* QuartzCore.framework */; };
 		48ACF733168074D400664E22 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48ACF732168074D400664E22 /* UIKit.framework */; };
 		48ACF735168074D400664E22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48ACF734168074D400664E22 /* Foundation.framework */; };
 		48ACF737168074D400664E22 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48ACF736168074D400664E22 /* CoreGraphics.framework */; };
@@ -45,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48A5BE371681B8B8007D4DC3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		48ACF72E168074D400664E22 /* LAAnimatedGridExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LAAnimatedGridExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48ACF732168074D400664E22 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		48ACF734168074D400664E22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48A5BE381681B8B8007D4DC3 /* QuartzCore.framework in Frameworks */,
 				48ACF7C51680D96E00664E22 /* MobileCoreServices.framework in Frameworks */,
 				48ACF7C31680D96400664E22 /* SystemConfiguration.framework in Frameworks */,
 				48ACF733168074D400664E22 /* UIKit.framework in Frameworks */,
@@ -139,6 +142,7 @@
 		48ACF731168074D400664E22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				48A5BE371681B8B8007D4DC3 /* QuartzCore.framework */,
 				48ACF7C41680D96E00664E22 /* MobileCoreServices.framework */,
 				48ACF7C21680D96300664E22 /* SystemConfiguration.framework */,
 				48ACF732168074D400664E22 /* UIKit.framework */,
@@ -446,6 +450,7 @@
 				48ACF754168074D500664E22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

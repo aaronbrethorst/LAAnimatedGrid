@@ -18,15 +18,32 @@
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  
  */
+#import <QuartzCore/QuartzCore.h>
 
 #import "LAAnimatedView.h"
 #import "UIImageView+AFNetworking.h"
+
+
+#define FADE_DURATION           0.4f
+#define ANIMATION_DURATION      5.0f
+
+typedef enum
+{
+    LAAVAnimationZoomIn = 1,
+    LAAVAnimationZoomOut,
+    LAAVAnimationMoveLeft,
+    LAAVAnimationMoveRight,
+    LAAVAnimationNone
+}LAAVAnimation;
 
 @interface LAAnimatedView () <UIScrollViewDelegate>
 {
     UIScrollView *_scrollView;
     UIImageView *_imgView;
     UIImage *_image;
+    
+    NSArray *_animations;
+    LAAVAnimation animation;
 }
 
 @end
@@ -39,6 +56,7 @@
     if (self)
     {
         self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _animations = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:LAAVAnimationZoomIn], [NSNumber numberWithInt:LAAVAnimationZoomOut], [NSNumber numberWithInt:LAAVAnimationMoveLeft], [NSNumber numberWithInt:LAAVAnimationMoveRight], [NSNumber numberWithInt:LAAVAnimationNone], nil];
     }
     return self;
 }
@@ -54,6 +72,8 @@
 #else
         _image = aImage;
 #endif
+        
+        _animations = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:LAAVAnimationZoomIn], [NSNumber numberWithInt:LAAVAnimationZoomOut], [NSNumber numberWithInt:LAAVAnimationMoveLeft], [NSNumber numberWithInt:LAAVAnimationMoveRight], [NSNumber numberWithInt:LAAVAnimationNone], nil];
     }
     return self;
 }
@@ -64,6 +84,7 @@
     [_scrollView release];
     [_imgView release];
     [_image release];
+    [_animations release];
     
     [super dealloc];
 }
@@ -74,8 +95,6 @@
 // Drawing code
 - (void)drawRect:(CGRect)rect
 {
-    self.backgroundColor = [UIColor redColor];
-    
     // UIImageView setup
     _imgView                        = [[UIImageView alloc] initWithImage:_image];
     _imgView.autoresizingMask       = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
@@ -100,7 +119,7 @@
     [_scrollView addSubview:_imgView];
     [self addSubview:_scrollView];
     
-    // Image
+    // adjust image
     //[self adjustImage];
 }
 
@@ -115,22 +134,23 @@
     _image = aImage;
 #endif
     
+    // adjust image when its assigned
     [self adjustImage];
 }
 
 - (void)setImageURL:(NSURL *)aURL placeholderImage:(UIImage *)aImage
 {
-#if !__has_feature(objc_arc)
-    [_image release];
-    _image = [aImage retain];
-#else
-    _image = aImage;
-#endif
-    
     [_imgView setImageWithURL:aURL
-             placeholderImage:_image
+             placeholderImage:aImage
                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image)
                       {
+#if !__has_feature(objc_arc)
+                          [_image release];
+                          _image = [image retain];
+#else
+                          _image = image;
+#endif
+                          
                           // adjust image when its assigned
                           [self adjustImage];
                       }
@@ -146,7 +166,7 @@
     if ([self superview])
     {
         // set the image in the UIImageView
-        _imgView.image = _image;
+        [self changeImage];
         _imgView.frame = (CGRect){.origin=CGPointMake(0.0f, 0.0f), .size=_image.size};
         
         
@@ -163,6 +183,9 @@
         
         // center the content
         [self centerScrollViewContents];
+        
+        // animate
+        [self animate];
     }
 }
 
@@ -171,25 +194,110 @@
     CGSize boundsSize       = _scrollView.bounds.size;
     CGRect contentsFrame    = _imgView.frame;
     
-    if (contentsFrame.size.width < boundsSize.width) 
-        contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
-    else 
-        contentsFrame.origin.x = 0.0f;
-    
-    if (contentsFrame.size.height < boundsSize.height) 
-        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
-    else 
-        contentsFrame.origin.y = 0.0f;
+    contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
+    contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
     
     _imgView.frame = contentsFrame;
 }
 
-#pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+// set the image animated
+- (void)changeImage
 {
-    // The scroll view has zoomed, so we need to re-center the contents
-    [self centerScrollViewContents];
+    _imgView.image = _image;
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = FADE_DURATION;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    
+    [_imgView.layer addAnimation:transition forKey:nil];
+}
+
+- (void)animate
+{
+    animation = [[_animations objectAtIndex:[self giveRandomNumAnimation]] intValue];
+    
+    switch (animation)
+    {
+        case LAAVAnimationZoomIn:
+        {
+            [self zoomInAnimation];
+        }
+            break;
+            
+        case LAAVAnimationZoomOut:
+        {
+            [self zoomOutAnimation];
+        }
+            break;
+            
+        case LAAVAnimationMoveLeft:
+        {
+            [self moveLeftAnimation];
+        }
+            break;
+            
+        case LAAVAnimationMoveRight:
+        {
+            [self moveRightAnimation];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)zoomInAnimation
+{
+    CGRect contentsFrame        = _imgView.frame;
+    contentsFrame.origin.x     -= (contentsFrame.size.width*0.2)/2;
+    contentsFrame.origin.y     -= (contentsFrame.size.height*0.2)/2;
+    contentsFrame.size.width   -= contentsFrame.size.width*0.2;
+    contentsFrame.size.height  -= contentsFrame.size.height*0.2;
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
+        _imgView.frame = contentsFrame;
+    }];
+}
+
+- (void)zoomOutAnimation
+{
+    CGRect contentsFrame        = _imgView.frame;
+    contentsFrame.origin.x     += (contentsFrame.size.width*0.2)/2;
+    contentsFrame.origin.y     += (contentsFrame.size.height*0.2)/2;
+    contentsFrame.size.width   += contentsFrame.size.width*0.2;
+    contentsFrame.size.height  += contentsFrame.size.height*0.2;
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
+        _imgView.frame = contentsFrame;
+    }];
+}
+
+- (void)moveLeftAnimation
+{
+    CGRect contentsFrame    = _imgView.frame;
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
+        [_scrollView setContentOffset:CGPointMake(contentsFrame.origin.x, contentsFrame.origin.y) animated:NO];
+    }];
+}
+
+- (void)moveRightAnimation
+{
+    CGSize scrollFrame      = _scrollView.frame.size;
+    CGRect contentsFrame    = _imgView.frame;
+    contentsFrame.origin.x  = contentsFrame.size.width-scrollFrame.width*2;
+    contentsFrame.origin.y  = contentsFrame.size.height-scrollFrame.height*2;
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
+        [_scrollView setContentOffset:CGPointMake(contentsFrame.origin.x, contentsFrame.origin.y) animated:NO];
+    }];
+}
+
+- (int)giveRandomNumAnimation
+{
+    return arc4random() % [_animations count];
 }
 
 @end

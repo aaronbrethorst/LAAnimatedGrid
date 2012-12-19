@@ -22,8 +22,20 @@
 #import "LAAnimatedGrid.h"
 #import "LAAnimatedView.h"
 
-#define MAX_RANDOM_SEC  5
-#define MARGIN          5
+#define MAX_RANDOM_SEC          5
+#define MARGIN                  5
+#define ANIMATION_DURATION      5.0f
+#define DELAY                   10.0f
+
+typedef enum
+{
+    LAAGAnimationMove1 = 1,
+    LAAGAnimationMove2,
+    LAAGAnimationMove3,
+    LAAGAnimationMove4
+}LAAGAnimation;
+
+// ANIMATIONS (DEFAULT: LAAGAnimationMove1) || explained at bottom
 
 #pragma mark -
 
@@ -38,6 +50,9 @@
     
     NSTimer *imageTimer;
     NSArray *arrViews;
+    
+    LAAGAnimation animation;
+    NSTimer *gridTimer;
 }
 
 @end
@@ -53,7 +68,8 @@
         // Initialization code
         _laagOrientation = LAAGOrientationHorizontal;
         _margin = MARGIN;
-        self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        self.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
+        animation = LAAGAnimationMove1;
     }
     return self;
 }
@@ -130,8 +146,6 @@
     view2 = [[LAAnimatedView alloc] initWithFrame:CGRectMake((mainFrame.size.width/4)+_margin, _margin, (mainFrame.size.width/4)*2-_margin, (mainFrame.size.height/3)*2-_margin)];
     view3 = [[LAAnimatedView alloc] initWithFrame:CGRectMake((mainFrame.size.width/4)*3+_margin, _margin, mainFrame.size.width/4-_margin, mainFrame.size.height/3-_margin)];
     
-    NSLog(@"%f", (mainFrame.size.width/4));
-    
     // Second Line
     view4 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(_margin, (mainFrame.size.height/3)+_margin, mainFrame.size.width/4-_margin, (mainFrame.size.height/3)*2-_margin)];
     view5 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(mainFrame.size.width/4+_margin, (mainFrame.size.height/3)*2+_margin, (mainFrame.size.width/4)*2-_margin, mainFrame.size.height/3-_margin)];
@@ -157,19 +171,19 @@
 //                VERTICAL
 //      ---------------------------
 //      |                 |       |
-//      |        1        |   2   |
+//      |        4        |   1   |
 //      |                 |       |
 //      |-------------------------|
 //      |        |                |
 //      |        |                |
 //      |        |                |
-//      |   3    |       4        |
+//      |   5    |       2        |
 //      |        |                |
 //      |        |                |
 //      |        |                |
 //      |-------------------------|
 //      |                 |       |
-//      |        5        |   6   |
+//      |        6        |   3   |
 //      |                 |       |
 //      ---------------------------
 
@@ -180,16 +194,16 @@
     mainFrame.size.height -= _margin;
     
     // First Line
-    view1 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(_margin, _margin, (mainFrame.size.width/3)*2-_margin, mainFrame.size.height/4-_margin)];
-    view2 = [[LAAnimatedView alloc] initWithFrame:CGRectMake((mainFrame.size.width/3)*2+_margin, _margin, mainFrame.size.width/3-_margin, mainFrame.size.width/4-_margin)];
+    view4 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(_margin, _margin, (mainFrame.size.width/3)*2-_margin, mainFrame.size.height/4-_margin)];
+    view1 = [[LAAnimatedView alloc] initWithFrame:CGRectMake((mainFrame.size.width/3)*2+_margin, _margin, mainFrame.size.width/3-_margin, mainFrame.size.height/4-_margin)];
     
     // Second Line
-    view3 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(_margin, mainFrame.size.height/4+_margin, mainFrame.size.width/3-_margin, (mainFrame.size.height/4)*2-_margin)];
-    view4 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(mainFrame.size.width/3+_margin, mainFrame.size.height/4+_margin, (mainFrame.size.width/3)*2-_margin, (mainFrame.size.height/4)*2-_margin)];
+    view5 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(_margin, mainFrame.size.height/4+_margin, mainFrame.size.width/3-_margin, (mainFrame.size.height/4)*2-_margin)];
+    view2 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(mainFrame.size.width/3+_margin, mainFrame.size.height/4+_margin, (mainFrame.size.width/3)*2-_margin, (mainFrame.size.height/4)*2-_margin)];
     
     // Third Line
-    view5 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(_margin, (mainFrame.size.height/4)*3+_margin, (mainFrame.size.width/3)*2-_margin, mainFrame.size.height/4-_margin)];
-    view6 = [[LAAnimatedView alloc] initWithFrame:CGRectMake((mainFrame.size.width/3)*2+_margin, (mainFrame.size.height/4)*3+_margin, mainFrame.size.width/3-_margin, mainFrame.size.height/4-_margin)];
+    view6 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(_margin, (mainFrame.size.height/4)*3+_margin, (mainFrame.size.width/3)*2-_margin, mainFrame.size.height/4-_margin)];
+    view3 = [[LAAnimatedView alloc] initWithFrame:CGRectMake((mainFrame.size.width/3)*2+_margin, (mainFrame.size.height/4)*3+_margin, mainFrame.size.width/3-_margin, mainFrame.size.height/4-_margin)];
     
     [self addSubview:view1];
     [self addSubview:view2];
@@ -229,6 +243,7 @@
     }
     
     imageTimer = [NSTimer scheduledTimerWithTimeInterval:[self giveRandomSeconds] target:self selector:@selector(randomizeImage) userInfo:nil repeats:NO];
+    imageTimer = [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DURATION target:self selector:@selector(animateGrids) userInfo:nil repeats:NO];
 }
 
 - (void)randomizeImage
@@ -267,110 +282,221 @@
     return arc4random() % [[self subviews] count];
 }
 
+#pragma mark - ANIMATIONS
+
+- (void)animateGrids
+{
+    switch (animation)
+    {
+        case LAAGAnimationMove1:
+        {
+            [self move1Animation];
+            animation = LAAGAnimationMove2;
+        }
+            break;
+            
+        case LAAGAnimationMove2:
+        {
+            [self move2Animation];
+            animation = LAAGAnimationMove3;
+        }
+            break;
+            
+        case LAAGAnimationMove3:
+        {
+            [self move3Animation];
+            animation = LAAGAnimationMove4;
+        }
+            break;
+            
+        case LAAGAnimationMove4:
+        {
+            [self move4Animation];
+            animation = LAAGAnimationMove1;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    imageTimer = [NSTimer scheduledTimerWithTimeInterval:DELAY target:self selector:@selector(animateGrids) userInfo:nil repeats:NO];
+}
+
+//                VERTICAL
+//      ---------------------------
+//      |                 |       |
+//      |        4        |   1   |
+//      |                 |       |
+//      |-------------------------|
+//      |        |                |
+//      |        |                |
+//      |        |                |
+//      |   5    |       2        |
+//      |        |                |
+//      |        |                |
+//      |        |                |
+//      |-------------------------|
+//      |                 |       |
+//      |        6        |   3   |
+//      |                 |       |
+//      ---------------------------
+
+- (void)move1Animation
+{
+    CGRect firstFrame   = view2.frame;
+    CGRect secondFrame  = view5.frame;
+    if (_laagOrientation == LAAGOrientationVertical)
+    {
+        secondFrame.origin  = CGPointMake(view2.frame.size.width+_margin*2, view2.frame.origin.y);
+        firstFrame.origin   = view5.frame.origin;
+    }
+    else
+    {
+        secondFrame.origin  = view2.frame.origin;
+        firstFrame.origin   = CGPointMake(view5.frame.origin.x, view5.frame.size.height+_margin*2);
+    }
+    
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
+        view2.frame = secondFrame;
+        view5.frame = firstFrame;
+    }];
+}
+
+- (void)move2Animation
+{
+    CGRect firstFrame   = view5.frame;
+    CGRect secondFrame  = view6.frame;
+    if (_laagOrientation == LAAGOrientationVertical)
+    {
+        firstFrame.origin   = CGPointMake(view6.frame.origin.x, view5.frame.origin.y+view6.frame.size.height+_margin);
+    }
+    else
+    {
+        firstFrame.origin   = CGPointMake(view5.frame.origin.x+view6.frame.size.width+_margin, view6.frame.origin.y);
+    }
+    secondFrame.origin  = view5.frame.origin;
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
+        view5.frame = secondFrame;
+        view6.frame = firstFrame;
+    }];
+}
+
+- (void)move3Animation
+{
+    CGRect firstFrame   = view5.frame;
+    CGRect secondFrame  = view6.frame;
+    if (_laagOrientation == LAAGOrientationVertical)
+    {
+        firstFrame.origin   = CGPointMake(view6.frame.origin.x, view5.frame.origin.y+view6.frame.size.height+_margin);
+    }
+    else
+    {
+        firstFrame.origin   = CGPointMake(view5.frame.origin.x+view6.frame.size.width+_margin, view6.frame.origin.y);
+    }
+    secondFrame.origin  = view5.frame.origin;
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
+        view5.frame = secondFrame;
+        view6.frame = firstFrame;
+    }];
+}
+
+- (void)move4Animation
+{
+    CGRect firstFrame   = view2.frame;
+    CGRect secondFrame  = view5.frame;
+    if (_laagOrientation == LAAGOrientationVertical)
+    {
+        secondFrame.origin  = CGPointMake(view2.frame.size.width+_margin*2, view2.frame.origin.y);
+        firstFrame.origin   = view5.frame.origin;
+    }
+    else
+    {
+        secondFrame.origin  = view2.frame.origin;
+        firstFrame.origin   = CGPointMake(view5.frame.origin.x, view5.frame.size.height+_margin*2);
+    }
+    
+    
+    [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
+        view2.frame = secondFrame;
+        view5.frame = firstFrame;
+    }];
+}
+
 @end
 
-/*
- 
- // view1
- int randomNum   = [self giveRandomNumber];
- id obj          = [_arrImages objectAtIndex:randomNum];
- if ([obj isKindOfClass:[UIImage class]])
- {
- [view1 setImage:obj];
- }
- else if ([obj isKindOfClass:[NSURL class]])
- {
- [view1 setImageURL:obj placeholderImage:_placeholderImage];
- }
- else
- {
- NSLog(@"LAAnimatedGrid only support UIImage and NSURL (error at index %d)", randomNum);
- }
- 
- // view2
- randomNum   = [self giveRandomNumber];
- obj         = [_arrImages objectAtIndex:randomNum];
- if ([obj isKindOfClass:[UIImage class]])
- {
- [view2 setImage:obj];
- }
- else if ([obj isKindOfClass:[NSURL class]])
- {
- [view2 setImageURL:obj placeholderImage:_placeholderImage];
- }
- else
- {
- NSLog(@"LAAnimatedGrid only support UIImage and NSURL (error at index %d of the arrImage)", randomNum);
- }
- 
- // view3
- randomNum   = [self giveRandomNumber];
- obj         = [_arrImages objectAtIndex:randomNum];
- if ([obj isKindOfClass:[UIImage class]])
- {
- [view3 setImage:obj];
- }
- else if ([obj isKindOfClass:[NSURL class]])
- {
- [view3 setImageURL:obj placeholderImage:_placeholderImage];
- }
- else
- {
- NSLog(@"LAAnimatedGrid only support UIImage and NSURL (error at index %d of the arrImage)", randomNum);
- }
- 
- // view4
- randomNum   = [self giveRandomNumber];
- obj         = [_arrImages objectAtIndex:randomNum];
- if ([obj isKindOfClass:[UIImage class]])
- {
- [view4 setImage:obj];
- }
- else if ([obj isKindOfClass:[NSURL class]])
- {
- [view4 setImageURL:obj placeholderImage:_placeholderImage];
- }
- else
- {
- NSLog(@"LAAnimatedGrid only support UIImage and NSURL (error at index %d of the arrImage)", randomNum);
- }
- 
- // view5
- randomNum   = [self giveRandomNumber];
- obj         = [_arrImages objectAtIndex:randomNum];
- if ([obj isKindOfClass:[UIImage class]])
- {
- [view5 setImage:obj];
- }
- else if ([obj isKindOfClass:[NSURL class]])
- {
- [view5 setImageURL:obj placeholderImage:_placeholderImage];
- }
- else
- {
- NSLog(@"LAAnimatedGrid only support UIImage and NSURL (error at index %d of the arrImage)", randomNum);
- }
- 
- // view6
- randomNum   = [self giveRandomNumber];
- obj         = [_arrImages objectAtIndex:randomNum];
- if ([obj isKindOfClass:[UIImage class]])
- {
- [view6 setImage:obj];
- }
- else if ([obj isKindOfClass:[NSURL class]])
- {
- [view6 setImageURL:obj placeholderImage:_placeholderImage];
- }
- else
- {
- NSLog(@"LAAnimatedGrid only support UIImage and NSURL (error at index %d of the arrImages)", randomNum);
- }
 
- */
+//    ANIMATION EXPLANATION (SAME TO VERTICAL MODE)
+
+//                    **MOVE1**
+//                      FROM
+//      -------------------------------------
+//      |        |                |         |
+//      |    1   |                |    3    |
+//      |        |                |         |
+//      |--------|       2        |---------|
+//      |        |                |         |
+//      |        |                |         |
+//      |        |                |         |
+//      |   4    |----------------|    6    |
+//      |        |                |         |
+//      |        |       5        |         |
+//      |        |                |         |
+//      -------------------------------------
+//                      TO
+//      -------------------------------------
+//      |        |                |         |
+//      |    1   |       2        |    3    |
+//      |        |                |         |
+//      |--------|----------------|---------|
+//      |        |                |         |
+//      |        |                |         |
+//      |        |                |         |
+//      |   4    |       5        |    6    |
+//      |        |                |         |
+//      |        |                |         |
+//      |        |                |         |
+//      -------------------------------------
 
 
+//                    **MOVE2**
+//                      FROM
+//      -------------------------------------
+//      |        |                |         |
+//      |    1   |       2        |    3    |
+//      |        |                |         |
+//      |--------|----------------|---------|
+//      |        |                |         |
+//      |        |                |         |
+//      |        |                |         |
+//      |   4    |       5        |    6    |
+//      |        |                |         |
+//      |        |                |         |
+//      |        |                |         |
+//      -------------------------------------
+//                      TO
+//      -------------------------------------
+//      |        |                |         |
+//      |    1   |       2        |    3    |
+//      |        |                |         |
+//      |--------|--------------------------|
+//      |        |        |                 |
+//      |        |        |                 |
+//      |        |        |                 |
+//      |   4    |   5    |         6       |
+//      |        |        |                 |
+//      |        |        |                 |
+//      |        |        |                 |
+//      -------------------------------------
 
 
+//                    **MOVE3**
+//              Reverse the MOVE2
 
+
+//                    **MOVE4**
+//              Reverse the MOVE1
 
