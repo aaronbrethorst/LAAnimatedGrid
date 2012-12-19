@@ -25,7 +25,7 @@
 #define MAX_RANDOM_SEC          5
 #define MARGIN                  5
 #define ANIMATION_DURATION      5.0f
-#define DELAY                   10.0f
+#define GRID_ANIMATION_DELAY    10.0f
 
 typedef enum
 {
@@ -68,16 +68,26 @@ typedef enum
         // Initialization code
         _laagOrientation = LAAGOrientationHorizontal;
         _margin = MARGIN;
-        self.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
         animation = LAAGAnimationMove1;
+        self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        self.laagBorderColor = [UIColor blackColor];
+        self.laagBackGroundColor = [UIColor whiteColor];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [imageTimer invalidate];
-    imageTimer = nil;
+    if (imageTimer)
+    {
+        [imageTimer invalidate];
+        imageTimer = nil;
+    }
+    if (gridTimer)
+    {
+        [gridTimer invalidate];
+        gridTimer = nil;
+    }
     
 #if !__has_feature(objc_arc)
     [_arrImages release];
@@ -94,6 +104,29 @@ typedef enum
 // Drawing code
 - (void)drawRect:(CGRect)rect
 {
+    if (imageTimer)
+    {
+        [imageTimer invalidate];
+        imageTimer = nil;
+    }
+    if (gridTimer)
+    {
+        [gridTimer invalidate];
+        gridTimer = nil;
+    }
+    if (view1)
+        [view1 removeFromSuperview];
+    if (view2)
+        [view2 removeFromSuperview];
+    if (view3)
+        [view3 removeFromSuperview];
+    if (view4)
+        [view4 removeFromSuperview];
+    if (view5)
+        [view5 removeFromSuperview];
+    if (view6)
+        [view6 removeFromSuperview];
+    
     switch (_laagOrientation)
     {
         case LAAGOrientationHorizontal:
@@ -115,7 +148,38 @@ typedef enum
             break;
     }
     
+    // set the background color
+    [view1 setScrollBackGroundColor:self.laagBackGroundColor];
+    [view2 setScrollBackGroundColor:self.laagBackGroundColor];
+    [view3 setScrollBackGroundColor:self.laagBackGroundColor];
+    [view4 setScrollBackGroundColor:self.laagBackGroundColor];
+    [view5 setScrollBackGroundColor:self.laagBackGroundColor];
+    [view6 setScrollBackGroundColor:self.laagBackGroundColor];
+    
+    // add the views
+    [self addSubview:view1];
+    [self addSubview:view2];
+    [self addSubview:view3];
+    [self addSubview:view4];
+    [self addSubview:view5];
+    [self addSubview:view6];
+    
+#if !__has_feature(objc_arc)
+    [view1 release];
+    [view2 release];
+    [view3 release];
+    [view4 release];
+    [view5 release];
+    [view6 release];
+#endif
+    
+    // set images in all the views and start timers
     [self setImages];
+}
+
+- (void)setLaagBorderColor:(UIColor *)laagBorderColor
+{
+    self.backgroundColor = laagBorderColor;
 }
 
 #pragma mark - Functions
@@ -150,22 +214,6 @@ typedef enum
     view4 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(_margin, (mainFrame.size.height/3)+_margin, mainFrame.size.width/4-_margin, (mainFrame.size.height/3)*2-_margin)];
     view5 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(mainFrame.size.width/4+_margin, (mainFrame.size.height/3)*2+_margin, (mainFrame.size.width/4)*2-_margin, mainFrame.size.height/3-_margin)];
     view6 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(mainFrame.size.width/4*3+_margin, mainFrame.size.height/3+_margin, mainFrame.size.width/4-_margin, (mainFrame.size.height/3)*2-_margin)];
-    
-    [self addSubview:view1];
-    [self addSubview:view2];
-    [self addSubview:view3];
-    [self addSubview:view4];
-    [self addSubview:view5];
-    [self addSubview:view6];
-    
-#if !__has_feature(objc_arc)
-    [view1 release];
-    [view2 release];
-    [view3 release];
-    [view4 release];
-    [view5 release];
-    [view6 release];
-#endif
 }
 
 //                VERTICAL
@@ -204,22 +252,6 @@ typedef enum
     // Third Line
     view6 = [[LAAnimatedView alloc] initWithFrame:CGRectMake(_margin, (mainFrame.size.height/4)*3+_margin, (mainFrame.size.width/3)*2-_margin, mainFrame.size.height/4-_margin)];
     view3 = [[LAAnimatedView alloc] initWithFrame:CGRectMake((mainFrame.size.width/3)*2+_margin, (mainFrame.size.height/4)*3+_margin, mainFrame.size.width/3-_margin, mainFrame.size.height/4-_margin)];
-    
-    [self addSubview:view1];
-    [self addSubview:view2];
-    [self addSubview:view3];
-    [self addSubview:view4];
-    [self addSubview:view5];
-    [self addSubview:view6];
-    
-#if !__has_feature(objc_arc)
-    [view1 release];
-    [view2 release];
-    [view3 release];
-    [view4 release];
-    [view5 release];
-    [view6 release];
-#endif
 }
 
 - (void)setImages
@@ -243,12 +275,18 @@ typedef enum
     }
     
     imageTimer = [NSTimer scheduledTimerWithTimeInterval:[self giveRandomSeconds] target:self selector:@selector(randomizeImage) userInfo:nil repeats:NO];
-    imageTimer = [NSTimer scheduledTimerWithTimeInterval:ANIMATION_DURATION target:self selector:@selector(animateGrids) userInfo:nil repeats:NO];
+    gridTimer  = [NSTimer scheduledTimerWithTimeInterval:GRID_ANIMATION_DELAY target:self selector:@selector(animateGrids) userInfo:nil repeats:YES];
 }
 
 - (void)randomizeImage
 {
     LAAnimatedView *laaView = [[self subviews] objectAtIndex:[self giveRandomNumView]];
+    
+    // we can't change an image in a view whitch is animating
+    while ([laaView isLocked])
+    {
+        laaView = [[self subviews] objectAtIndex:[self giveRandomNumView]];
+    }
     int randomNum           = [self giveRandomNumImage];
     id obj                  = [_arrImages objectAtIndex:randomNum];
     if ([obj isKindOfClass:[UIImage class]])
@@ -320,7 +358,7 @@ typedef enum
             break;
     }
     
-    imageTimer = [NSTimer scheduledTimerWithTimeInterval:DELAY target:self selector:@selector(animateGrids) userInfo:nil repeats:NO];
+    //gridTimer = [NSTimer scheduledTimerWithTimeInterval:GRID_ANIMATION_DELAY target:self selector:@selector(animateGrids) userInfo:nil repeats:NO];
 }
 
 //                VERTICAL
@@ -356,11 +394,15 @@ typedef enum
         secondFrame.origin  = view2.frame.origin;
         firstFrame.origin   = CGPointMake(view5.frame.origin.x, view5.frame.size.height+_margin*2);
     }
-    
+    view2.locked = YES;
+    view5.locked = YES;
     
     [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
         view2.frame = secondFrame;
         view5.frame = firstFrame;
+    } completion:^(BOOL finished) {
+        view2.locked = NO;
+        view5.locked = NO;
     }];
 }
 
@@ -378,9 +420,15 @@ typedef enum
     }
     secondFrame.origin  = view5.frame.origin;
     
+    view5.locked = YES;
+    view6.locked = YES;
+    
     [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
         view5.frame = secondFrame;
         view6.frame = firstFrame;
+    } completion:^(BOOL finished) {
+        view5.locked = NO;
+        view6.locked = NO;
     }];
 }
 
@@ -398,9 +446,15 @@ typedef enum
     }
     secondFrame.origin  = view5.frame.origin;
     
+    view5.locked = YES;
+    view6.locked = YES;
+    
     [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
         view5.frame = secondFrame;
         view6.frame = firstFrame;
+    } completion:^(BOOL finished) {
+        view5.locked = NO;
+        view6.locked = NO;
     }];
 }
 
@@ -419,10 +473,15 @@ typedef enum
         firstFrame.origin   = CGPointMake(view5.frame.origin.x, view5.frame.size.height+_margin*2);
     }
     
+    view2.locked = YES;
+    view5.locked = YES;
     
     [UIView animateWithDuration:ANIMATION_DURATION animations:^ {
         view2.frame = secondFrame;
         view5.frame = firstFrame;
+    } completion:^(BOOL finished) {
+        view2.locked = NO;
+        view5.locked = NO;
     }];
 }
 

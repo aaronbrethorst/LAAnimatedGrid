@@ -23,7 +23,10 @@
 
 @interface LAAnimatedView : UIView
 
+@property (nonatomic, assign, getter = isLocked) BOOL locked;
+
 - (id)initWithFrame:(CGRect)frame andImage:(UIImage *)aImage;
+- (void)setScrollBackGroundColor:(UIColor *)aColor;
 - (void)setImage:(UIImage *)aImage;
 - (void)setImageURL:(NSURL *)aURL placeholderImage:(UIImage *)aImage;
 

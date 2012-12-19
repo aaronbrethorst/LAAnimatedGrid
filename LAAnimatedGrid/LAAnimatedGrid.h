@@ -71,5 +71,7 @@ typedef enum
 @property (nonatomic, retain) NSMutableArray *arrImages;
 @property (nonatomic, retain) UIImage *placeholderImage;
 @property (nonatomic, assign) int margin;
+@property (nonatomic, retain) UIColor *laagBorderColor;
+@property (nonatomic, retain) UIColor *laagBackGroundColor;
 
 @end

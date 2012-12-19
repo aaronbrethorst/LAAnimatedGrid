@@ -46,6 +46,8 @@ typedef enum
     LAAVAnimation animation;
 }
 
+@property (nonatomic, retain) UIColor *laagBackGroundColor;
+
 @end
 
 @implementation LAAnimatedView
@@ -55,7 +57,18 @@ typedef enum
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        self.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
+        _animations = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:LAAVAnimationZoomIn], [NSNumber numberWithInt:LAAVAnimationZoomOut], [NSNumber numberWithInt:LAAVAnimationMoveLeft], [NSNumber numberWithInt:LAAVAnimationMoveRight], [NSNumber numberWithInt:LAAVAnimationNone], nil];
+    }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame andColor:(UIColor *)aColor
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        self.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
         _animations = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:LAAVAnimationZoomIn], [NSNumber numberWithInt:LAAVAnimationZoomOut], [NSNumber numberWithInt:LAAVAnimationMoveLeft], [NSNumber numberWithInt:LAAVAnimationMoveRight], [NSNumber numberWithInt:LAAVAnimationNone], nil];
     }
     return self;
@@ -85,6 +98,7 @@ typedef enum
     [_imgView release];
     [_image release];
     [_animations release];
+    [_laagBackGroundColor release];
     
     [super dealloc];
 }
@@ -112,7 +126,7 @@ typedef enum
     _scrollView.delegate                            = self;
     _scrollView.userInteractionEnabled              = NO;
     _scrollView.autoresizingMask                    = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    _scrollView.backgroundColor                     = [UIColor clearColor];
+    _scrollView.backgroundColor                     = self.laagBackGroundColor;
     _scrollView.contentSize                         = _image.size;
     
     // Adding subviews
@@ -121,6 +135,11 @@ typedef enum
     
     // adjust image
     //[self adjustImage];
+}
+
+- (void)setScrollBackGroundColor:(UIColor *)aColor
+{
+    self.laagBackGroundColor = aColor;
 }
 
 #pragma mark - Functions

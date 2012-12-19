@@ -23,6 +23,9 @@
 #import "LAAnimatedGrid.h"
 
 @interface ViewController ()
+{
+    LAAnimatedGrid *laag;
+}
 
 @end
 
@@ -43,10 +46,11 @@
     
     
     // LAAnimatedGrid
-    LAAnimatedGrid *laag = [[LAAnimatedGrid alloc] initWithFrame:CGRectMake(10, 10, 300, 500)];
-    laag.backgroundColor = [UIColor blackColor];
+    laag = [[LAAnimatedGrid alloc] initWithFrame:CGRectMake(10, 10, 300, 200)];
     [laag setArrImages:arrImages];
-    [laag setLaagOrientation:LAAGOrientationVertical];
+    // [laag setLaagOrientation:LAAGOrientationVertical];
+    // [laag setLaagBorderColor:[UIColor blackColor]];
+    // [laag setLaagBackGroundColor:[UIColor whiteColor]];
     
     [self.view addSubview:laag];
     
@@ -81,6 +85,21 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [laag setNeedsDisplay];
 }
 
 @end
