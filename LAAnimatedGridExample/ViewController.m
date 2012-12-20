@@ -41,7 +41,7 @@
     NSMutableArray *arrImages = [NSMutableArray array];
     for (int i=1; i<11; i++)
     {
-        [arrImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"ios%d.jpeg", i]]];
+        [arrImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"images.bundle/ios%d.jpeg", i]]];
     }
     
     

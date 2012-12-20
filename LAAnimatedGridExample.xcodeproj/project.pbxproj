@@ -31,16 +31,7 @@
 		48ACF7C31680D96400664E22 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48ACF7C21680D96300664E22 /* SystemConfiguration.framework */; };
 		48ACF7C51680D96E00664E22 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48ACF7C41680D96E00664E22 /* MobileCoreServices.framework */; };
 		48ACF7C71680DA2D00664E22 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF7C61680DA2D00664E22 /* README.md */; };
-		48BD0542168332A900239285 /* ios1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD0538168332A900239285 /* ios1.jpeg */; };
-		48BD0543168332A900239285 /* ios10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD0539168332A900239285 /* ios10.jpeg */; };
-		48BD0544168332A900239285 /* ios2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053A168332A900239285 /* ios2.jpeg */; };
-		48BD0545168332A900239285 /* ios3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053B168332A900239285 /* ios3.jpeg */; };
-		48BD0546168332A900239285 /* ios4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053C168332A900239285 /* ios4.jpeg */; };
-		48BD0547168332A900239285 /* ios5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053D168332A900239285 /* ios5.jpeg */; };
-		48BD0548168332A900239285 /* ios6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053E168332A900239285 /* ios6.jpeg */; };
-		48BD0549168332A900239285 /* ios7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053F168332A900239285 /* ios7.jpeg */; };
-		48BD054A168332A900239285 /* ios8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD0540168332A900239285 /* ios8.jpeg */; };
-		48BD054B168332A900239285 /* ios9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD0541168332A900239285 /* ios9.jpeg */; };
+		48BD0551168333DA00239285 /* images.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BD0550168333DA00239285 /* images.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,16 +76,7 @@
 		48ACF7C21680D96300664E22 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		48ACF7C41680D96E00664E22 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		48ACF7C61680DA2D00664E22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		48BD0538168332A900239285 /* ios1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios1.jpeg; sourceTree = "<group>"; };
-		48BD0539168332A900239285 /* ios10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios10.jpeg; sourceTree = "<group>"; };
-		48BD053A168332A900239285 /* ios2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios2.jpeg; sourceTree = "<group>"; };
-		48BD053B168332A900239285 /* ios3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios3.jpeg; sourceTree = "<group>"; };
-		48BD053C168332A900239285 /* ios4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios4.jpeg; sourceTree = "<group>"; };
-		48BD053D168332A900239285 /* ios5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios5.jpeg; sourceTree = "<group>"; };
-		48BD053E168332A900239285 /* ios6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios6.jpeg; sourceTree = "<group>"; };
-		48BD053F168332A900239285 /* ios7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios7.jpeg; sourceTree = "<group>"; };
-		48BD0540168332A900239285 /* ios8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios8.jpeg; sourceTree = "<group>"; };
-		48BD0541168332A900239285 /* ios9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios9.jpeg; sourceTree = "<group>"; };
+		48BD0550168333DA00239285 /* images.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = images.bundle; path = ../images.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +108,7 @@
 			children = (
 				48A5BE4216820C98007D4DC3 /* captura.png */,
 				48ACF7C61680DA2D00664E22 /* README.md */,
-				48BD0537168332A900239285 /* images */,
+				48BD0550168333DA00239285 /* images.bundle */,
 				48ACF7891680B41C00664E22 /* Extern */,
 				48ACF755168074DA00664E22 /* LAAnimatedGrid */,
 				48ACF738168074D400664E22 /* LAAnimatedGridExample */,
@@ -227,24 +209,6 @@
 			path = AFNetworking_1_0;
 			sourceTree = "<group>";
 		};
-		48BD0537168332A900239285 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				48BD0538168332A900239285 /* ios1.jpeg */,
-				48BD0539168332A900239285 /* ios10.jpeg */,
-				48BD053A168332A900239285 /* ios2.jpeg */,
-				48BD053B168332A900239285 /* ios3.jpeg */,
-				48BD053C168332A900239285 /* ios4.jpeg */,
-				48BD053D168332A900239285 /* ios5.jpeg */,
-				48BD053E168332A900239285 /* ios6.jpeg */,
-				48BD053F168332A900239285 /* ios7.jpeg */,
-				48BD0540168332A900239285 /* ios8.jpeg */,
-				48BD0541168332A900239285 /* ios9.jpeg */,
-			);
-			name = images;
-			path = ../images;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -300,16 +264,7 @@
 				48ACF74F168074D500664E22 /* ViewController.xib in Resources */,
 				48ACF7C71680DA2D00664E22 /* README.md in Resources */,
 				48A5BE4316820C98007D4DC3 /* captura.png in Resources */,
-				48BD0542168332A900239285 /* ios1.jpeg in Resources */,
-				48BD0543168332A900239285 /* ios10.jpeg in Resources */,
-				48BD0544168332A900239285 /* ios2.jpeg in Resources */,
-				48BD0545168332A900239285 /* ios3.jpeg in Resources */,
-				48BD0546168332A900239285 /* ios4.jpeg in Resources */,
-				48BD0547168332A900239285 /* ios5.jpeg in Resources */,
-				48BD0548168332A900239285 /* ios6.jpeg in Resources */,
-				48BD0549168332A900239285 /* ios7.jpeg in Resources */,
-				48BD054A168332A900239285 /* ios8.jpeg in Resources */,
-				48BD054B168332A900239285 /* ios9.jpeg in Resources */,
+				48BD0551168333DA00239285 /* images.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
