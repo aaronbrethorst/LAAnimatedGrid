@@ -19,16 +19,6 @@
 		48ACF74F168074D500664E22 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF74D168074D500664E22 /* ViewController.xib */; };
 		48ACF758168074EB00664E22 /* LAAnimatedGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ACF757168074EB00664E22 /* LAAnimatedGrid.m */; };
 		48ACF75F168078BC00664E22 /* LAAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ACF75E168078BC00664E22 /* LAAnimatedView.m */; };
-		48ACF77016808F2C00664E22 /* ios1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF76616808F2C00664E22 /* ios1.jpeg */; };
-		48ACF77116808F2C00664E22 /* ios10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF76716808F2C00664E22 /* ios10.jpeg */; };
-		48ACF77216808F2C00664E22 /* ios2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF76816808F2C00664E22 /* ios2.jpeg */; };
-		48ACF77316808F2C00664E22 /* ios3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF76916808F2C00664E22 /* ios3.jpeg */; };
-		48ACF77416808F2C00664E22 /* ios4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF76A16808F2C00664E22 /* ios4.jpeg */; };
-		48ACF77516808F2C00664E22 /* ios5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF76B16808F2C00664E22 /* ios5.jpeg */; };
-		48ACF77616808F2C00664E22 /* ios6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF76C16808F2C00664E22 /* ios6.jpeg */; };
-		48ACF77716808F2C00664E22 /* ios7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF76D16808F2C00664E22 /* ios7.jpeg */; };
-		48ACF77816808F2C00664E22 /* ios8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF76E16808F2C00664E22 /* ios8.jpeg */; };
-		48ACF77916808F2C00664E22 /* ios9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF76F16808F2C00664E22 /* ios9.jpeg */; };
 		48ACF7B51680B7DB00664E22 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ACF7A31680B7DB00664E22 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		48ACF7B61680B7DB00664E22 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ACF7A51680B7DB00664E22 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		48ACF7B71680B7DB00664E22 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ACF7A71680B7DB00664E22 /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -41,6 +31,16 @@
 		48ACF7C31680D96400664E22 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48ACF7C21680D96300664E22 /* SystemConfiguration.framework */; };
 		48ACF7C51680D96E00664E22 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48ACF7C41680D96E00664E22 /* MobileCoreServices.framework */; };
 		48ACF7C71680DA2D00664E22 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF7C61680DA2D00664E22 /* README.md */; };
+		48BD0542168332A900239285 /* ios1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD0538168332A900239285 /* ios1.jpeg */; };
+		48BD0543168332A900239285 /* ios10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD0539168332A900239285 /* ios10.jpeg */; };
+		48BD0544168332A900239285 /* ios2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053A168332A900239285 /* ios2.jpeg */; };
+		48BD0545168332A900239285 /* ios3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053B168332A900239285 /* ios3.jpeg */; };
+		48BD0546168332A900239285 /* ios4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053C168332A900239285 /* ios4.jpeg */; };
+		48BD0547168332A900239285 /* ios5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053D168332A900239285 /* ios5.jpeg */; };
+		48BD0548168332A900239285 /* ios6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053E168332A900239285 /* ios6.jpeg */; };
+		48BD0549168332A900239285 /* ios7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD053F168332A900239285 /* ios7.jpeg */; };
+		48BD054A168332A900239285 /* ios8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD0540168332A900239285 /* ios8.jpeg */; };
+		48BD054B168332A900239285 /* ios9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 48BD0541168332A900239285 /* ios9.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,16 +63,6 @@
 		48ACF757168074EB00664E22 /* LAAnimatedGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LAAnimatedGrid.m; path = LAAnimatedGrid/LAAnimatedGrid.m; sourceTree = "<group>"; };
 		48ACF75D168078BC00664E22 /* LAAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LAAnimatedView.h; path = LAAnimatedGrid/LAAnimatedView.h; sourceTree = "<group>"; };
 		48ACF75E168078BC00664E22 /* LAAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LAAnimatedView.m; path = LAAnimatedGrid/LAAnimatedView.m; sourceTree = "<group>"; };
-		48ACF76616808F2C00664E22 /* ios1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios1.jpeg; sourceTree = "<group>"; };
-		48ACF76716808F2C00664E22 /* ios10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios10.jpeg; sourceTree = "<group>"; };
-		48ACF76816808F2C00664E22 /* ios2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios2.jpeg; sourceTree = "<group>"; };
-		48ACF76916808F2C00664E22 /* ios3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios3.jpeg; sourceTree = "<group>"; };
-		48ACF76A16808F2C00664E22 /* ios4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios4.jpeg; sourceTree = "<group>"; };
-		48ACF76B16808F2C00664E22 /* ios5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios5.jpeg; sourceTree = "<group>"; };
-		48ACF76C16808F2C00664E22 /* ios6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios6.jpeg; sourceTree = "<group>"; };
-		48ACF76D16808F2C00664E22 /* ios7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios7.jpeg; sourceTree = "<group>"; };
-		48ACF76E16808F2C00664E22 /* ios8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios8.jpeg; sourceTree = "<group>"; };
-		48ACF76F16808F2C00664E22 /* ios9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios9.jpeg; sourceTree = "<group>"; };
 		48ACF7A21680B7DB00664E22 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		48ACF7A31680B7DB00664E22 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		48ACF7A41680B7DB00664E22 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -95,6 +85,16 @@
 		48ACF7C21680D96300664E22 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		48ACF7C41680D96E00664E22 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		48ACF7C61680DA2D00664E22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		48BD0538168332A900239285 /* ios1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios1.jpeg; sourceTree = "<group>"; };
+		48BD0539168332A900239285 /* ios10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios10.jpeg; sourceTree = "<group>"; };
+		48BD053A168332A900239285 /* ios2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios2.jpeg; sourceTree = "<group>"; };
+		48BD053B168332A900239285 /* ios3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios3.jpeg; sourceTree = "<group>"; };
+		48BD053C168332A900239285 /* ios4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios4.jpeg; sourceTree = "<group>"; };
+		48BD053D168332A900239285 /* ios5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios5.jpeg; sourceTree = "<group>"; };
+		48BD053E168332A900239285 /* ios6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios6.jpeg; sourceTree = "<group>"; };
+		48BD053F168332A900239285 /* ios7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios7.jpeg; sourceTree = "<group>"; };
+		48BD0540168332A900239285 /* ios8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios8.jpeg; sourceTree = "<group>"; };
+		48BD0541168332A900239285 /* ios9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ios9.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +126,7 @@
 			children = (
 				48A5BE4216820C98007D4DC3 /* captura.png */,
 				48ACF7C61680DA2D00664E22 /* README.md */,
-				48ACF76516808F2C00664E22 /* images */,
+				48BD0537168332A900239285 /* images */,
 				48ACF7891680B41C00664E22 /* Extern */,
 				48ACF755168074DA00664E22 /* LAAnimatedGrid */,
 				48ACF738168074D400664E22 /* LAAnimatedGridExample */,
@@ -192,24 +192,6 @@
 			name = LAAnimatedGrid;
 			sourceTree = "<group>";
 		};
-		48ACF76516808F2C00664E22 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				48ACF76616808F2C00664E22 /* ios1.jpeg */,
-				48ACF76716808F2C00664E22 /* ios10.jpeg */,
-				48ACF76816808F2C00664E22 /* ios2.jpeg */,
-				48ACF76916808F2C00664E22 /* ios3.jpeg */,
-				48ACF76A16808F2C00664E22 /* ios4.jpeg */,
-				48ACF76B16808F2C00664E22 /* ios5.jpeg */,
-				48ACF76C16808F2C00664E22 /* ios6.jpeg */,
-				48ACF76D16808F2C00664E22 /* ios7.jpeg */,
-				48ACF76E16808F2C00664E22 /* ios8.jpeg */,
-				48ACF76F16808F2C00664E22 /* ios9.jpeg */,
-			);
-			name = images;
-			path = ../images;
-			sourceTree = "<group>";
-		};
 		48ACF7891680B41C00664E22 /* Extern */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +225,24 @@
 			);
 			name = AFNetworking;
 			path = AFNetworking_1_0;
+			sourceTree = "<group>";
+		};
+		48BD0537168332A900239285 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				48BD0538168332A900239285 /* ios1.jpeg */,
+				48BD0539168332A900239285 /* ios10.jpeg */,
+				48BD053A168332A900239285 /* ios2.jpeg */,
+				48BD053B168332A900239285 /* ios3.jpeg */,
+				48BD053C168332A900239285 /* ios4.jpeg */,
+				48BD053D168332A900239285 /* ios5.jpeg */,
+				48BD053E168332A900239285 /* ios6.jpeg */,
+				48BD053F168332A900239285 /* ios7.jpeg */,
+				48BD0540168332A900239285 /* ios8.jpeg */,
+				48BD0541168332A900239285 /* ios9.jpeg */,
+			);
+			name = images;
+			path = ../images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,18 +298,18 @@
 			files = (
 				48ACF73D168074D400664E22 /* InfoPlist.strings in Resources */,
 				48ACF74F168074D500664E22 /* ViewController.xib in Resources */,
-				48ACF77016808F2C00664E22 /* ios1.jpeg in Resources */,
-				48ACF77116808F2C00664E22 /* ios10.jpeg in Resources */,
-				48ACF77216808F2C00664E22 /* ios2.jpeg in Resources */,
-				48ACF77316808F2C00664E22 /* ios3.jpeg in Resources */,
-				48ACF77416808F2C00664E22 /* ios4.jpeg in Resources */,
-				48ACF77516808F2C00664E22 /* ios5.jpeg in Resources */,
-				48ACF77616808F2C00664E22 /* ios6.jpeg in Resources */,
-				48ACF77716808F2C00664E22 /* ios7.jpeg in Resources */,
-				48ACF77816808F2C00664E22 /* ios8.jpeg in Resources */,
-				48ACF77916808F2C00664E22 /* ios9.jpeg in Resources */,
 				48ACF7C71680DA2D00664E22 /* README.md in Resources */,
 				48A5BE4316820C98007D4DC3 /* captura.png in Resources */,
+				48BD0542168332A900239285 /* ios1.jpeg in Resources */,
+				48BD0543168332A900239285 /* ios10.jpeg in Resources */,
+				48BD0544168332A900239285 /* ios2.jpeg in Resources */,
+				48BD0545168332A900239285 /* ios3.jpeg in Resources */,
+				48BD0546168332A900239285 /* ios4.jpeg in Resources */,
+				48BD0547168332A900239285 /* ios5.jpeg in Resources */,
+				48BD0548168332A900239285 /* ios6.jpeg in Resources */,
+				48BD0549168332A900239285 /* ios7.jpeg in Resources */,
+				48BD054A168332A900239285 /* ios8.jpeg in Resources */,
+				48BD054B168332A900239285 /* ios9.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
