@@ -31,7 +31,7 @@
 		48ACF7C31680D96400664E22 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48ACF7C21680D96300664E22 /* SystemConfiguration.framework */; };
 		48ACF7C51680D96E00664E22 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48ACF7C41680D96E00664E22 /* MobileCoreServices.framework */; };
 		48ACF7C71680DA2D00664E22 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF7C61680DA2D00664E22 /* README.md */; };
-		48BD0551168333DA00239285 /* images.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BD0550168333DA00239285 /* images.bundle */; };
+		48BD05531683344500239285 /* images.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 48BD05521683344500239285 /* images.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,7 +76,7 @@
 		48ACF7C21680D96300664E22 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		48ACF7C41680D96E00664E22 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		48ACF7C61680DA2D00664E22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		48BD0550168333DA00239285 /* images.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = images.bundle; path = ../images.bundle; sourceTree = "<group>"; };
+		48BD05521683344500239285 /* images.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = images.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 			children = (
 				48A5BE4216820C98007D4DC3 /* captura.png */,
 				48ACF7C61680DA2D00664E22 /* README.md */,
-				48BD0550168333DA00239285 /* images.bundle */,
+				48BD05521683344500239285 /* images.bundle */,
 				48ACF7891680B41C00664E22 /* Extern */,
 				48ACF755168074DA00664E22 /* LAAnimatedGrid */,
 				48ACF738168074D400664E22 /* LAAnimatedGridExample */,
@@ -264,7 +264,7 @@
 				48ACF74F168074D500664E22 /* ViewController.xib in Resources */,
 				48ACF7C71680DA2D00664E22 /* README.md in Resources */,
 				48A5BE4316820C98007D4DC3 /* captura.png in Resources */,
-				48BD0551168333DA00239285 /* images.bundle in Resources */,
+				48BD05531683344500239285 /* images.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
