@@ -15,9 +15,6 @@
 		48ACF73D168074D400664E22 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF73B168074D400664E22 /* InfoPlist.strings */; };
 		48ACF73F168074D400664E22 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ACF73E168074D400664E22 /* main.m */; };
 		48ACF743168074D400664E22 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ACF742168074D400664E22 /* AppDelegate.m */; };
-		48ACF745168074D400664E22 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF744168074D400664E22 /* Default.png */; };
-		48ACF747168074D500664E22 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF746168074D500664E22 /* Default@2x.png */; };
-		48ACF749168074D500664E22 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF748168074D500664E22 /* Default-568h@2x.png */; };
 		48ACF74C168074D500664E22 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ACF74B168074D500664E22 /* ViewController.m */; };
 		48ACF74F168074D500664E22 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48ACF74D168074D500664E22 /* ViewController.xib */; };
 		48ACF758168074EB00664E22 /* LAAnimatedGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ACF757168074EB00664E22 /* LAAnimatedGrid.m */; };
@@ -59,9 +56,6 @@
 		48ACF740168074D400664E22 /* LAAnimatedGridExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LAAnimatedGridExample-Prefix.pch"; sourceTree = "<group>"; };
 		48ACF741168074D400664E22 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		48ACF742168074D400664E22 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		48ACF744168074D400664E22 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		48ACF746168074D500664E22 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		48ACF748168074D500664E22 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		48ACF74A168074D500664E22 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		48ACF74B168074D500664E22 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		48ACF74E168074D500664E22 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
@@ -183,9 +177,6 @@
 				48ACF73B168074D400664E22 /* InfoPlist.strings */,
 				48ACF73E168074D400664E22 /* main.m */,
 				48ACF740168074D400664E22 /* LAAnimatedGridExample-Prefix.pch */,
-				48ACF744168074D400664E22 /* Default.png */,
-				48ACF746168074D500664E22 /* Default@2x.png */,
-				48ACF748168074D500664E22 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -306,9 +297,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				48ACF73D168074D400664E22 /* InfoPlist.strings in Resources */,
-				48ACF745168074D400664E22 /* Default.png in Resources */,
-				48ACF747168074D500664E22 /* Default@2x.png in Resources */,
-				48ACF749168074D500664E22 /* Default-568h@2x.png in Resources */,
 				48ACF74F168074D500664E22 /* ViewController.xib in Resources */,
 				48ACF77016808F2C00664E22 /* ios1.jpeg in Resources */,
 				48ACF77116808F2C00664E22 /* ios10.jpeg in Resources */,
@@ -427,6 +415,7 @@
 				INFOPLIST_FILE = "LAAnimatedGridExample/LAAnimatedGridExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -439,6 +428,7 @@
 				INFOPLIST_FILE = "LAAnimatedGridExample/LAAnimatedGridExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
